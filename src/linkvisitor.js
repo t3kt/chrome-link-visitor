@@ -25,6 +25,14 @@ chrome.contextMenus.create({
     markLink(info, tab, false);
   }
 });
+chrome.contextMenus.create({
+  title: 'Is link visited?',
+  contexts: ['link'],
+  onclick: function (info, tab)
+  {
+    testLink(info.linkUrl);
+  }
+});
 
 function markLink(info, tab, visited)
 {
@@ -32,6 +40,15 @@ function markLink(info, tab, visited)
     chrome.history.addUrl({ url: info.linkUrl });
   else
     chrome.history.deleteUrl({ url: info.linkUrl });
+}
+
+function testLink(url)
+{
+  chrome.history.getVisits({ url: url }, function (visits)
+  {
+    var visited = visits.length > 0;
+    alert(!visited ? 'Link is not visited' : ('Link is visited (' + visits.length + ' times)'));
+  });
 }
 
 //// Create a parent item and two children.
