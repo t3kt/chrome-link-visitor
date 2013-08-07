@@ -1,0 +1,10 @@
+{
+  "name": "Link Visitor",
+  "description": "Adds context menu options for marking links as visited/unvisited",
+  "version": "0.6",
+  "permissions": ["contextMenus", "history"],
+  "background": {
+    "scripts": ["linkvisitor.js"]
+  },
+  "manifest_version": 2
+}
